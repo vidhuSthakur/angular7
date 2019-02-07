@@ -1,0 +1,52 @@
+<div class="authBlock">
+    <h3 class="h3 mb-3 font-weight-normal">Sign Up</h3>
+    <form class="form-signup" [formGroup]="signupForm" (ngSubmit)="onSubmit(userEmail.value, userPwd.value)">
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Email Address" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"#userEmail required>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"#userPwd required>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.password">Minimum length of the password should be 6</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <!--input type="button" class="btn btn-primary mr-2" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)"-->
+        <button class="btn btn-primary mr-2" >Sign Up</button>
+      </div>
+      
+    </form>
+      <div class="form-group">
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+
+      <!-- Continue with Google -->
+      <div class="form-group">
+        <button type="button" class="btn btn-primary googleBtn" (click)="authService.GoogleAuth()">
+          <i class="fab fa-google-plus-g"></i>
+          Continue with Google
+        </button>
+      </div>
+
+      <!-- Continue with Facebook -->
+      <div class="form-group">
+        <!--button type="button" class="btn btn-primary facebookBtn" (click)="authService.FacebookAuth()"-->
+        <button type="button" class="btn btn-primary facebookBtn">
+          <i class="fab fa-facebook"></i>
+          Continue with Facebook
+        </button>
+      </div>
+
+    <div class="redirectToLogin">
+      <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+    </div>
+    
+</div>
+ 
